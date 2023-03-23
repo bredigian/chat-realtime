@@ -1,15 +1,20 @@
 import React, { useState } from "react"
+import { useDispatch, useSelector } from "react-redux"
 
-import { AuthContext } from "../../context/auth"
 import { BiChevronLeft } from "react-icons/bi"
 import { BsChat } from "react-icons/bs"
 import { NavLink } from "react-router-dom"
+import { signOut } from "../../store/actions"
 
 const Header = () => {
+  const dispatch = useDispatch()
+  const userId = useSelector((state) => state.auth.userId)
   const [showNavbar, setShowNavbar] = useState(true)
-  const { userCurrent } = React.useContext(AuthContext)
   const handleShowNavbar = () => {
     setShowNavbar(!showNavbar)
+  }
+  const logOut = () => {
+    dispatch(signOut())
   }
   return (
     <div className="flex flex-col sticky top-0">
@@ -42,12 +47,18 @@ const Header = () => {
           <NavLink to={"/"} onClick={handleShowNavbar}>
             <li className="p-4 text-primary font-bold text-base">Home</li>
           </NavLink>
-          {!userCurrent ? (
+          {!userId ? (
             <NavLink to={"/signin"} onClick={handleShowNavbar}>
               <li className="p-4 text-primary font-bold text-base">Sign In</li>
             </NavLink>
           ) : (
-            <NavLink to={"/"} onClick={handleShowNavbar}>
+            <NavLink
+              to={"/"}
+              onClick={() => {
+                handleShowNavbar()
+                logOut()
+              }}
+            >
               <li className="p-4 text-primary font-bold text-base">Sign Out</li>
             </NavLink>
           )}

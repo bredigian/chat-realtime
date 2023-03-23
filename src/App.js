@@ -1,15 +1,16 @@
 import { Chat, Home, SignIn, SignUp } from "./views"
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom"
 
-import AuthProvider from "./context/auth"
 import { Header } from "./components"
 import { ProtectedRoute } from "./routes"
+import { Provider } from "react-redux"
 import React from "react"
+import store from "./store"
 
 function App() {
   return (
-    <Router>
-      <AuthProvider>
+    <Provider store={store}>
+      <Router>
         <Header />
         <Routes>
           <Route exact path="/" element={<Home title={"Welcome"} />} />
@@ -26,8 +27,8 @@ function App() {
           />
           <Route exact path="*" element={<h1>404</h1>} />
         </Routes>
-      </AuthProvider>
-    </Router>
+      </Router>
+    </Provider>
   )
 }
 
