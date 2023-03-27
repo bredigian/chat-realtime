@@ -16,6 +16,7 @@ const Header = () => {
   const logOut = () => {
     dispatch(signOut())
   }
+  console.log("userId del Header: ", userId)
   return (
     <div className="flex flex-col sticky top-0">
       <div className="flex justify-between p-8 bg-secondary">

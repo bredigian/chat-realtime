@@ -1,13 +1,13 @@
 import { BsFillKeyFill, BsFillPersonFill } from "react-icons/bs"
+import { Card, Input } from "../../components"
 
-import { Input } from "../../components"
 import { Link } from "react-router-dom"
 import { MdAlternateEmail } from "react-icons/md"
 import React from "react"
 
 const Form = ({ type, onSubmit }) => {
   return (
-    <div className="w-4/5 max-w-form bg-secondary rounded-2xl p-4 flex flex-col items-center gap-5">
+    <Card className="w-4/5 max-w-form flex flex-col items-center gap-5">
       <h1 className="text-lg font-bold text-primary">{type}</h1>
       <form
         className="flex flex-col gap-5 items-center w-full"
@@ -54,7 +54,7 @@ const Form = ({ type, onSubmit }) => {
           ? "No account yet? Sign Up"
           : "Already have an account? Sign In"}
       </Link>
-    </div>
+    </Card>
   )
 }
 
