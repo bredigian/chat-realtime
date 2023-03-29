@@ -1,23 +1,36 @@
-import React, { useEffect } from "react"
-import { useDispatch, useSelector } from "react-redux"
+import { Input, MessageItem } from "../../components"
 
-import { UserItem } from "../../components"
-import { getUsers } from "../../store/actions"
+import React from "react"
+import { useParams } from "react-router"
 
 const Chat = () => {
-  const users = useSelector((state) => state.users.users)
-  const userData = useSelector((state) => state.auth.userData?.data)
-  const dispatch = useDispatch()
-  useEffect(() => {
-    dispatch(getUsers(userData.email))
-  }, [dispatch])
+  const { userFriendUsername } = useParams()
+  const [message, setMessage] = React.useState("")
+  const onSubmit = (e) => {
+    if (e.key === "Enter") {
+      console.log(message)
+      setMessage("")
+    }
+  }
+  const onChange = (e) => {
+    setMessage(e.target.value)
+  }
   return (
     <div className="flex flex-col items-center gap-4 m-4">
-      <h1 className="text-primary text-lg font-bold">Users List</h1>
-      <div className="flex flex-col items-center gap-4 w-4/5">
-        {users.map((user) => {
-          return <UserItem data={user.data} key={user.id} />
-        })}
+      <h1 className="text-primary text-base">{userFriendUsername}</h1>
+      <div className="messages-list grid gap-4 w-full">
+        {/* {messages.map((message) => {
+          return <MessageItem data={message} />
+        })} */}
+      </div>
+      <div className="w-3/4 sticky bottom-4 bg-secondary rounded-3xl py-1 px-2">
+        <Input
+          type={"text"}
+          label="Type a message"
+          onSubmit={onSubmit}
+          onChange={onChange}
+          value={message}
+        />
       </div>
     </div>
   )

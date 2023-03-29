@@ -4,6 +4,7 @@ module.exports = {
   theme: {
     extend: {
       width: {
+        fit: "fit-content",
         "4/5": "80%",
         full: "100%",
       },

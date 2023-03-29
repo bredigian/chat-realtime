@@ -16,10 +16,9 @@ const Header = () => {
   const logOut = () => {
     dispatch(signOut())
   }
-  console.log("userId del Header: ", userId)
   return (
     <div className="flex flex-col sticky top-0">
-      <div className="flex justify-between p-8 bg-secondary">
+      <div className="flex justify-between p-6 bg-secondary">
         <BiChevronLeft
           size={45}
           color={"#C4C4D4"}

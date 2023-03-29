@@ -1,5 +1,10 @@
-import { Chat, Home, SignIn, SignUp } from "./views"
-import { Route, BrowserRouter as Router, Routes } from "react-router-dom"
+import { Chat, ChatList, Home, SignIn, SignUp } from "./views"
+import {
+  Route,
+  BrowserRouter as Router,
+  Routes,
+  useParams,
+} from "react-router-dom"
 
 import { Header } from "./components"
 import { ProtectedRoute } from "./routes"
@@ -19,6 +24,15 @@ function App() {
           <Route
             exact
             path="/chat"
+            element={
+              <ProtectedRoute>
+                <ChatList />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            exact
+            path="/chat/:userId/:userFriend/:userFriendUsername"
             element={
               <ProtectedRoute>
                 <Chat />
