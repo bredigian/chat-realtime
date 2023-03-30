@@ -8,3 +8,8 @@ export const userTypes = {
   GET_USERS: "GET_USERS",
   GET_USER: "GET_USER",
 }
+
+export const chatTypes = {
+  POST_MESSAGE: "POST_MESSAGE",
+  GET_MESSAGES: "GET_MESSAGES",
+}
