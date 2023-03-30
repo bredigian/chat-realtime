@@ -10,12 +10,15 @@ const Input = ({
   onSubmit,
   onChange,
   value,
+  border,
 }) => {
   return (
     <div className="w-full">
       <Label subLabel={subLabel} icon={icon}>
         <input
-          className="bg-transparent border-b border-transparent focus:outline-none focus:border-primary w-full text-input placeholder-primary"
+          className={`bg-transparent focus:outline-none ${
+            border && " border-b border-transparent focus:border-primary"
+          } w-full text-input placeholder-primary`}
           placeholder={`${label}`}
           id={id}
           type={type}

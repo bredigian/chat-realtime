@@ -17,6 +17,7 @@ const Form = ({ type, onSubmit }) => {
           label={"Email"}
           type="email"
           id="email"
+          border={true}
           icon={
             <MdAlternateEmail className="border-b border-transparent text-primary text-base" />
           }
@@ -26,6 +27,7 @@ const Form = ({ type, onSubmit }) => {
             label={"Username"}
             type="text"
             id="username"
+            border={true}
             icon={
               <BsFillPersonFill className="border-b border-transparent text-primary text-base" />
             }
@@ -35,6 +37,7 @@ const Form = ({ type, onSubmit }) => {
           label={"Password"}
           type="password"
           id="password"
+          border={true}
           icon={
             <BsFillKeyFill className="border-b border-transparent text-primary text-base" />
           }

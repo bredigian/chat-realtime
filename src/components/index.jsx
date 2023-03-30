@@ -1,6 +1,7 @@
 export { default as Input } from "./input"
 export { default as Label } from "./label"
 export { default as Header } from "./header"
+export { default as HeaderChat } from "./header-chat"
 export { default as Form } from "./form"
 export { default as UserItem } from "./user-item"
 export { default as Card } from "./card"

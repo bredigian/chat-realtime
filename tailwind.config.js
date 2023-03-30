@@ -14,6 +14,7 @@ module.exports = {
       },
       maxWidth: {
         form: "400px",
+        message: "200px",
       },
     },
     fontFamily: {

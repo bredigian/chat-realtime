@@ -5,7 +5,7 @@ import { UserItem } from "../../components"
 import { getUsers } from "../../store/actions"
 import { useNavigate } from "react-router"
 
-const ChatList = () => {
+const ChatList = ({ handleShowHeader }) => {
   const users = useSelector((state) => state.users.users)
   const userData = useSelector((state) => state.auth.userData?.data)
   const userId = useSelector((state) => state.auth.userId)
@@ -15,6 +15,7 @@ const ChatList = () => {
     dispatch(getUsers(userData.email))
   }, [dispatch])
   const openChat = (userFriend) => {
+    handleShowHeader()
     navigate(`/chat/${userId}/${userFriend.id}/${userFriend.data.username}`)
   }
   return (

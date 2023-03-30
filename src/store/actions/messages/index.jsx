@@ -38,8 +38,6 @@ export const postMessages = (message, sender, receiver) => {
 
 export const getMessages = (sender, receiver) => {
   return async (dispatch) => {
-    console.log("sender: ", sender)
-    console.log("receiver: ", receiver)
     try {
       const response = await fetch(`${URL_BASE}/messages.json`, {
         method: "GET",

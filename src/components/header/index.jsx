@@ -6,7 +6,7 @@ import { BsChat } from "react-icons/bs"
 import { NavLink } from "react-router-dom"
 import { signOut } from "../../store/actions"
 
-const Header = () => {
+const Header = ({ show }) => {
   const dispatch = useDispatch()
   const userId = useSelector((state) => state.auth.userId)
   const [showNavbar, setShowNavbar] = useState(true)
@@ -17,15 +17,17 @@ const Header = () => {
     dispatch(signOut())
   }
   return (
-    <div className="flex flex-col sticky top-0">
+    <div
+      className={`flex flex-col top-0 ${
+        !show ? "-translate-y-full hidden" : " sticky translate-y-0"
+      }`}
+    >
       <div className="flex justify-between p-6 bg-secondary">
         <BiChevronLeft
           size={45}
           color={"#C4C4D4"}
           onClick={handleShowNavbar}
-          className={`ease-in-out duration-200 ${
-            showNavbar ? "rotate-180" : null
-          }`}
+          className={`${showNavbar ? "rotate-180" : null}`}
         />
         <div className="flex flex-col items-center justify-center gap-2">
           <BsChat size={35} color={"#C4C4D4"} />

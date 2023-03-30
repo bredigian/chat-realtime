@@ -1,4 +1,5 @@
 import { Chat, ChatList, Home, SignIn, SignUp } from "./views"
+import React, { useState } from "react"
 import {
   Route,
   BrowserRouter as Router,
@@ -9,14 +10,17 @@ import {
 import { Header } from "./components"
 import { ProtectedRoute } from "./routes"
 import { Provider } from "react-redux"
-import React from "react"
 import store from "./store"
 
 function App() {
+  const [showHeader, setShowHeader] = useState(true)
+  const handleShowHeader = () => {
+    setShowHeader(!showHeader)
+  }
   return (
     <Provider store={store}>
       <Router>
-        <Header />
+        <Header show={showHeader} />
         <Routes>
           <Route exact path="/" element={<Home title={"Welcome"} />} />
           <Route exact path="/signin" element={<SignIn />} />
@@ -26,7 +30,7 @@ function App() {
             path="/chat"
             element={
               <ProtectedRoute>
-                <ChatList />
+                <ChatList handleShowHeader={handleShowHeader} />
               </ProtectedRoute>
             }
           />
@@ -35,7 +39,7 @@ function App() {
             path="/chat/:userId/:userFriend/:userFriendUsername"
             element={
               <ProtectedRoute>
-                <Chat />
+                <Chat handleShowHeader={handleShowHeader} />
               </ProtectedRoute>
             }
           />
