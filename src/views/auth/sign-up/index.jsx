@@ -1,11 +1,14 @@
 import { Form, Loading } from "../../../components"
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useReducer, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 
+import { formReducer } from "../../../store/reducers"
+import { initialState } from "../../../store/reducers/form"
 import { signUp } from "../../../store/actions"
 import { useNavigate } from "react-router"
 
 const SignUp = () => {
+  const [formState] = useReducer(formReducer, initialState)
   const [loading, setLoading] = useState(false)
   const [isLogging, setIsLogging] = useState(false)
   const dispatch = useDispatch()
@@ -15,9 +18,9 @@ const SignUp = () => {
     e.preventDefault()
     setIsLogging(true)
     const user = {
-      email: e.target.email.value,
-      username: e.target.username.value,
-      password: e.target.password.value,
+      email: formState.email.value,
+      username: formState.username.value,
+      password: formState.password.value,
     }
     dispatch(signUp(user.email, user.username, user.password))
     setTimeout(() => {

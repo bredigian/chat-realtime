@@ -14,6 +14,7 @@ module.exports = {
         full: "100vh",
         screen: "100%",
         loader: "400px",
+        sublabel: "5px",
       },
       maxWidth: {
         form: "400px",
@@ -40,6 +41,7 @@ module.exports = {
       primary: "#C4C4D4",
       secondary: "#272635",
       input: "#C4C4D460",
+      error: "#FF3333",
     },
     placeholderColor: {
       primary: "#C4C4D460",

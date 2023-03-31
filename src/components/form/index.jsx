@@ -1,12 +1,19 @@
 import { BsFillKeyFill, BsFillPersonFill } from "react-icons/bs"
 import { Card, Input } from "../../components"
+import React, { useReducer } from "react"
 
 import { Link } from "react-router-dom"
 import { MdAlternateEmail } from "react-icons/md"
 import { Pulsar } from "@uiball/loaders"
-import React from "react"
+import { formReducer } from "../../store/reducers"
+import { initialState } from "../../store/reducers/form"
+import { onInputChange } from "../../utils"
 
 const Form = ({ type, onSubmit, isLogging }) => {
+  const [formState, dispatchFormState] = useReducer(formReducer, initialState)
+  const onHandleChangeInput = (value, type) => {
+    onInputChange(type, value, dispatchFormState, formState)
+  }
   return (
     <Card className="w-4/5 max-w-form flex flex-col items-center gap-5">
       <h1 className="text-lg font-bold text-primary">{type}</h1>
@@ -22,6 +29,11 @@ const Form = ({ type, onSubmit, isLogging }) => {
           icon={
             <MdAlternateEmail className="border-b border-transparent text-primary text-base" />
           }
+          onChange={(e) => onHandleChangeInput(e.target.value, "email")}
+          value={formState.email.value}
+          hasError={formState.email.hasError}
+          errorMessage={formState.email.errorMessage}
+          clicked={formState.email.clicked}
         />
         {type !== "Sign In" ? (
           <Input
@@ -32,6 +44,11 @@ const Form = ({ type, onSubmit, isLogging }) => {
             icon={
               <BsFillPersonFill className="border-b border-transparent text-primary text-base" />
             }
+            onChange={(e) => onHandleChangeInput(e.target.value, "username")}
+            value={formState.username.value}
+            hasError={formState.username.hasError}
+            errorMessage={formState.username.errorMessage}
+            clicked={formState.username.clicked}
           />
         ) : null}
         <Input
@@ -42,6 +59,11 @@ const Form = ({ type, onSubmit, isLogging }) => {
           icon={
             <BsFillKeyFill className="border-b border-transparent text-primary text-base" />
           }
+          onChange={(e) => onHandleChangeInput(e.target.value, "password")}
+          value={formState.password.value}
+          hasError={formState.password.hasError}
+          errorMessage={formState.password.errorMessage}
+          clicked={formState.password.clicked}
         />
         {isLogging ? (
           <Pulsar />

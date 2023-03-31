@@ -3,18 +3,25 @@ import React from "react"
 
 const Input = ({
   label,
+  value,
+  hasError,
+  errorMessage,
+  clicked,
   icon,
-  subLabel,
   type,
   id,
   onSubmit,
   onChange,
-  value,
   border,
 }) => {
   return (
     <div className="w-full">
-      <Label subLabel={subLabel} icon={icon}>
+      <Label
+        icon={icon}
+        hasError={hasError}
+        errorMessage={errorMessage}
+        clicked={clicked}
+      >
         <input
           className={`bg-transparent focus:outline-none ${
             border && " border-b border-transparent focus:border-primary"
