@@ -1,11 +1,12 @@
 import { Chat, ChatList, Home, SignIn, SignUp } from "./views"
-import React, { useState } from "react"
 import {
+  Navigate,
   Route,
   BrowserRouter as Router,
   Routes,
   useParams,
 } from "react-router-dom"
+import React, { useState } from "react"
 
 import { Header } from "./components"
 import { ProtectedRoute } from "./routes"
@@ -20,14 +21,13 @@ function App() {
   return (
     <Provider store={store}>
       <Router>
-        <Header show={showHeader} />
         <Routes>
-          <Route exact path="/" element={<Home title={"Welcome"} />} />
+          <Route exact path="/" element={<Navigate to={"/signin"} />} />
           <Route exact path="/signin" element={<SignIn />} />
           <Route exact path="/signup" element={<SignUp />} />
           <Route
             exact
-            path="/chat"
+            path="/home"
             element={
               <ProtectedRoute>
                 <ChatList handleShowHeader={handleShowHeader} />

@@ -59,7 +59,7 @@ export const signUp = (email, username, password) => {
   }
 }
 
-export const signIn = (email, password) => {
+export const signIn = (email, password, navigate) => {
   return async (dispatch) => {
     try {
       const signIn = await fetch(URL_AUTH_SIGN_IN, {
@@ -97,6 +97,7 @@ export const signIn = (email, password) => {
           return userData
         }
       })
+      navigate("/home")
       dispatch({
         type: SIGN_IN,
         token: data.idToken,

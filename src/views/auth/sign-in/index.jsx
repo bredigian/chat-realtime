@@ -1,11 +1,12 @@
+import { Form, Loading } from "../../../components"
+import React, { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 
-import { Form } from "../../../components"
-import React from "react"
 import { signIn } from "../../../store/actions"
 import { useNavigate } from "react-router"
 
 const SignIn = () => {
+  const [loading, setLoading] = useState(false)
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const userId = useSelector((state) => state.auth.userId)
@@ -16,18 +17,21 @@ const SignIn = () => {
       password: e.target.password.value,
     }
     console.log("signIn")
-    dispatch(signIn(user.email, user.password))
-    if (userId !== null) {
-      setTimeout(() => {
-        navigate("/")
-      }, 2000)
-    }
+    dispatch(signIn(user.email, user.password, navigate))
   }
-  return (
-    <div className="flex flex-col items-center my-8">
-      <Form type={"Sign In"} onSubmit={login} />
-    </div>
-  )
+
+  setTimeout(() => {
+    setLoading(true)
+  }, 2000)
+  if (!loading) {
+    return <Loading />
+  } else {
+    return (
+      <div className="grid place-items-center h-mid my-8">
+        <Form type={"Sign In"} onSubmit={login} />
+      </div>
+    )
+  }
 }
 
 export default SignIn

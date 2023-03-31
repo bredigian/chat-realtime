@@ -2,6 +2,7 @@ import Card from "../card"
 import React from "react"
 
 const UserItem = ({ data, onClick }) => {
+  console.log(data)
   return (
     <Card
       className={"flex flex-row items-center justify-between w-full"}
@@ -10,9 +11,12 @@ const UserItem = ({ data, onClick }) => {
       <img
         src="./assets/images/default-avatar.png"
         alt="User Avatar"
-        className="w-12 h-12 rounded-2xl"
+        className="w-10 h-10 rounded-2xl"
       />
-      <p className="text-primary text-base">{data.username}</p>
+      <div className="userdata flex flex-col">
+        <p className="text-primary text-base">{data.username}</p>
+        <p className="text-primary italic text-xs">{data.email}</p>
+      </div>
     </Card>
   )
 }

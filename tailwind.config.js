@@ -9,8 +9,11 @@ module.exports = {
         full: "100%",
       },
       height: {
+        mid: "50vh",
         80: "82.5vh",
         full: "100vh",
+        screen: "100%",
+        loader: "400px",
       },
       maxWidth: {
         form: "400px",
