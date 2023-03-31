@@ -97,7 +97,6 @@ export const signIn = (email, password, navigate) => {
           return userData
         }
       })
-      navigate("/home")
       dispatch({
         type: SIGN_IN,
         token: data.idToken,

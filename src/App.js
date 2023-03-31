@@ -1,14 +1,12 @@
-import { Chat, ChatList, Home, SignIn, SignUp } from "./views"
+import { Chat, ChatList, SignIn, SignUp } from "./views"
 import {
   Navigate,
   Route,
   BrowserRouter as Router,
   Routes,
-  useParams,
 } from "react-router-dom"
 import React, { useState } from "react"
 
-import { Header } from "./components"
 import { ProtectedRoute } from "./routes"
 import { Provider } from "react-redux"
 import store from "./store"

@@ -3,9 +3,10 @@ import { Card, Input } from "../../components"
 
 import { Link } from "react-router-dom"
 import { MdAlternateEmail } from "react-icons/md"
+import { Pulsar } from "@uiball/loaders"
 import React from "react"
 
-const Form = ({ type, onSubmit }) => {
+const Form = ({ type, onSubmit, isLogging }) => {
   return (
     <Card className="w-4/5 max-w-form flex flex-col items-center gap-5">
       <h1 className="text-lg font-bold text-primary">{type}</h1>
@@ -42,12 +43,16 @@ const Form = ({ type, onSubmit }) => {
             <BsFillKeyFill className="border-b border-transparent text-primary text-base" />
           }
         />
-        <button
-          type="submit"
-          className="rounded-2xl py-2 px-4 text-primary bg-primary font-bold"
-        >
-          {type}
-        </button>
+        {isLogging ? (
+          <Pulsar />
+        ) : (
+          <button
+            type="submit"
+            className="rounded-2xl py-2 px-4 text-primary bg-primary font-bold"
+          >
+            {type}
+          </button>
+        )}
       </form>
       <Link
         to={type === "Sign In" ? "/signup" : "/signin"}
