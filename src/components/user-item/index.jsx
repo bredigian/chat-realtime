@@ -4,7 +4,9 @@ import React from "react"
 const UserItem = ({ data, onClick }) => {
   return (
     <Card
-      className={"flex flex-row items-center justify-between w-full"}
+      className={
+        "flex flex-row items-center justify-between w-full hover:cursor-pointer"
+      }
       onClick={onClick}
     >
       <img

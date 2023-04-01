@@ -60,6 +60,7 @@ const Chat = () => {
               onSubmit={onSubmit}
               onChange={onChange}
               value={message}
+              sublabelON={false}
             />
           </div>
         </div>

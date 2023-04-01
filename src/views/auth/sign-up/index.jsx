@@ -12,9 +12,11 @@ const SignUp = () => {
   const [formState, dispatchFormState] = useReducer(formReducer, initialState)
   const [loading, setLoading] = useState(false)
   const [isLogging, setIsLogging] = useState(false)
+  const [isError, setIsError] = useState("")
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const userId = useSelector((state) => state.auth.userId)
+  const error = useSelector((state) => state.auth.error)
   const onHandleChangeInput = (value, type) => {
     onInputChange(type, value, dispatchFormState, formState)
   }
@@ -27,13 +29,15 @@ const SignUp = () => {
       password: formState?.password.value,
     }
     dispatch(signUp(user.email, user.username, user.password))
-    setTimeout(() => {
-      setIsLogging(false)
-    }, 1500)
   }
   useEffect(() => {
     if (userId) {
       navigate("/home")
+    } else if (error) {
+      setTimeout(() => {
+        setIsError(error)
+        setIsLogging(false)
+      }, 1000)
     }
   }, [dispatch, userId])
   setTimeout(() => {
@@ -50,6 +54,7 @@ const SignUp = () => {
           isLogging={isLogging}
           onHandleChangeInput={onHandleChangeInput}
           formState={formState}
+          error={isError}
         />
       </div>
     )

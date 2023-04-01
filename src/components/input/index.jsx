@@ -13,6 +13,7 @@ const Input = ({
   onSubmit,
   onChange,
   border,
+  sublabelON,
 }) => {
   return (
     <div className="w-full">
@@ -21,6 +22,7 @@ const Input = ({
         hasError={hasError}
         errorMessage={errorMessage}
         clicked={clicked}
+        sublabelON={sublabelON}
       >
         <input
           className={`bg-transparent focus:outline-none ${

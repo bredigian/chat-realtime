@@ -6,6 +6,7 @@ const initialState = {
   token: null,
   userId: null,
   userData: null,
+  error: null,
 }
 const authReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -15,6 +16,7 @@ const authReducer = (state = initialState, action) => {
         token: action.token,
         userId: action.userId,
         userData: action.userData,
+        error: action.error,
       }
     case SIGN_UP:
       return {
@@ -22,6 +24,7 @@ const authReducer = (state = initialState, action) => {
         token: action.token,
         userId: action.userId,
         userData: action.userData,
+        error: action.error,
       }
     case SIGN_OUT:
       return {
@@ -29,6 +32,7 @@ const authReducer = (state = initialState, action) => {
         token: null,
         userId: null,
         userData: null,
+        error: null,
       }
     default:
       return state

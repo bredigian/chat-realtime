@@ -3,56 +3,56 @@ const formatEmail =
 const minPasswordLenght = 6
 
 export const validateInput = (type, value) => {
-  let error = false
+  let hasError = false
   let errorMessage = ""
   switch (type) {
     case "email":
       if (value.trim() === "") {
-        error = true
+        hasError = true
         errorMessage = "Email is required"
       } else {
         if (!formatEmail.test(value)) {
-          error = true
+          hasError = true
           errorMessage = "Email is not valid"
         } else {
-          error = false
+          hasError = false
           errorMessage = ""
         }
       }
       break
     case "password":
       if (value.trim() === "") {
-        error = true
+        hasError = true
         errorMessage = "Password is required"
       } else {
         if (value.length < minPasswordLenght) {
-          error = true
+          hasError = true
           errorMessage = `Password must have at least ${minPasswordLenght} characters`
         } else {
-          error = false
+          hasError = false
           errorMessage = ""
         }
       }
       break
     case "username":
       if (value.trim() === "") {
-        error = true
+        hasError = true
         errorMessage = "Username is required"
       } else {
-        error = false
+        hasError = false
         errorMessage = ""
       }
       break
     default:
       break
   }
-  return { error, errorMessage }
+  return { hasError, errorMessage }
 }
 
 export const UPDATE_FORM = "UPDATE_FORM"
 
 export const onInputChange = (type, value, dispatch, formState) => {
-  const { error, errorMessage } = validateInput(type, value)
+  const { hasError, errorMessage } = validateInput(type, value)
   let isValid = true
   for (const key in formState) {
     const item = formState[key]
@@ -66,7 +66,7 @@ export const onInputChange = (type, value, dispatch, formState) => {
     data: {
       type,
       value,
-      error,
+      hasError,
       errorMessage,
       clicked: true,
       isValid,

@@ -1,18 +1,16 @@
 import { BsFillKeyFill, BsFillPersonFill } from "react-icons/bs"
-import { Card, Input } from "../../components"
-import React, { useReducer } from "react"
+import { Button, Card, Input } from "../../components"
 
 import { Link } from "react-router-dom"
 import { MdAlternateEmail } from "react-icons/md"
 import { Pulsar } from "@uiball/loaders"
-import { formReducer } from "../../store/reducers"
-import { initialState } from "../../store/reducers/form"
-import { onInputChange } from "../../utils"
+import React from "react"
 
 const Form = ({
   type,
   onSubmit,
   isLogging,
+  error,
   onHandleChangeInput,
   formState,
 }) => {
@@ -36,6 +34,7 @@ const Form = ({
           hasError={formState.email.hasError}
           errorMessage={formState.email.errorMessage}
           clicked={formState.email.clicked}
+          sublabelON={true}
         />
         {type !== "Sign In" ? (
           <Input
@@ -51,6 +50,7 @@ const Form = ({
             hasError={formState.username.hasError}
             errorMessage={formState.username.errorMessage}
             clicked={formState.username.clicked}
+            sublabelON={true}
           />
         ) : null}
         <Input
@@ -66,17 +66,27 @@ const Form = ({
           hasError={formState.password.hasError}
           errorMessage={formState.password.errorMessage}
           clicked={formState.password.clicked}
+          sublabelON={true}
         />
         {isLogging ? (
           <Pulsar />
         ) : (
-          <button
-            type="submit"
-            className="rounded-2xl py-2 px-4 text-primary bg-primary font-bold"
-          >
-            {type}
-          </button>
+          <Button
+            title={type}
+            type={"submit"}
+            size={"text-sm"}
+            color={"bg-primary"}
+            colorText={"text-primary"}
+            disable={
+              type === "Sign In"
+                ? formState.email.hasError || formState.password.hasError
+                : formState.email.hasError ||
+                  formState.password.hasError ||
+                  formState.username.hasError
+            }
+          />
         )}
+        {error ? <p className="text-xs italic text-error">{error}</p> : null}
       </form>
       <Link
         to={type === "Sign In" ? "/signup" : "/signin"}
