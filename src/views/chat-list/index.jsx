@@ -34,12 +34,17 @@ const ChatList = ({ handleShowHeader }) => {
       <div className="flex flex-col w-full">
         <Header
           iconAction={
-            <MdOutlineExitToApp size={30} color={"#C4C4D4"} onClick={logOut} />
+            <MdOutlineExitToApp
+              size={30}
+              color={"#C4C4D4"}
+              onClick={logOut}
+              className={"hover:cursor-pointer"}
+            />
           }
           title="Chats"
         />
         <div className="flex flex-col items-center gap-4 m-4">
-          <div className="flex flex-col items-center gap-4 w-full">
+          <div className="flex flex-col items-center gap-4 w-full dk:max-w-container">
             {users.map((user) => {
               return (
                 <UserItem

@@ -3,6 +3,9 @@ module.exports = {
   content: ["./src/**/*.{js,jsx,html}"],
   theme: {
     extend: {
+      margin: {
+        a: "auto",
+      },
       width: {
         fit: "fit-content",
         "4/5": "80%",
@@ -19,6 +22,14 @@ module.exports = {
       maxWidth: {
         form: "400px",
         message: "200px",
+        "message-dk": "600px",
+        container: "800px",
+        chat: "1000px",
+        "chat-input": "600px",
+        "3/4": "75%",
+      },
+      screens: {
+        dk: { min: "768px" },
       },
     },
     fontFamily: {
