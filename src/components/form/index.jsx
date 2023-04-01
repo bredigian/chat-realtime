@@ -9,11 +9,13 @@ import { formReducer } from "../../store/reducers"
 import { initialState } from "../../store/reducers/form"
 import { onInputChange } from "../../utils"
 
-const Form = ({ type, onSubmit, isLogging }) => {
-  const [formState, dispatchFormState] = useReducer(formReducer, initialState)
-  const onHandleChangeInput = (value, type) => {
-    onInputChange(type, value, dispatchFormState, formState)
-  }
+const Form = ({
+  type,
+  onSubmit,
+  isLogging,
+  onHandleChangeInput,
+  formState,
+}) => {
   return (
     <Card className="w-4/5 max-w-form flex flex-col items-center gap-5">
       <h1 className="text-lg font-bold text-primary">{type}</h1>

@@ -4,17 +4,21 @@ import { useDispatch, useSelector } from "react-redux"
 
 import { formReducer } from "../../../store/reducers"
 import { initialState } from "../../../store/reducers/form"
+import { onInputChange } from "../../../utils"
 import { signIn } from "../../../store/actions"
 import { useNavigate } from "react-router"
 
 const SignIn = () => {
-  const [formState] = useReducer(formReducer, initialState)
+  const [formState, dispatchFormState] = useReducer(formReducer, initialState)
   const [loading, setLoading] = useState(false)
   const [isLogging, setIsLogging] = useState(false)
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const userId = useSelector((state) => state.auth.userId)
-  const login = (e) => {
+  const onHandleChangeInput = (value, type) => {
+    onInputChange(type, value, dispatchFormState, formState)
+  }
+  const login = async (e) => {
     e.preventDefault()
     setIsLogging(true)
     const user = {
@@ -39,7 +43,13 @@ const SignIn = () => {
   } else {
     return (
       <div className="grid place-items-center h-mid my-8">
-        <Form type={"Sign In"} onSubmit={login} isLogging={isLogging} />
+        <Form
+          type={"Sign In"}
+          onSubmit={login}
+          isLogging={isLogging}
+          onHandleChangeInput={onHandleChangeInput}
+          formState={formState}
+        />
       </div>
     )
   }

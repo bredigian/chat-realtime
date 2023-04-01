@@ -8,6 +8,7 @@ import { authTypes } from "../../types"
 
 const { SIGN_IN, SIGN_UP, SIGN_OUT } = authTypes
 export const signUp = (email, username, password) => {
+  console.log("data", email, username, password)
   return async (dispatch) => {
     try {
       const signUp = await fetch(URL_AUTH_SIGN_UP, {
@@ -22,8 +23,9 @@ export const signUp = (email, username, password) => {
         }),
       })
       if (!signUp.ok) {
-        console.log("User already exists")
-        throw new Error("Something went wrong!")
+        throw new Error(
+          "Something went wrong when user was created your account!"
+        )
       }
       const data = await signUp.json()
       const createUser = await fetch(`${URL_BASE}/users.json`, {
@@ -59,7 +61,7 @@ export const signUp = (email, username, password) => {
   }
 }
 
-export const signIn = (email, password, navigate) => {
+export const signIn = (email, password) => {
   return async (dispatch) => {
     try {
       const signIn = await fetch(URL_AUTH_SIGN_IN, {
