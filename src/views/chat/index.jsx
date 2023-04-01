@@ -19,13 +19,13 @@ const Chat = () => {
   const dummy = useRef()
   useEffect(() => {
     dispatch(getMessages(userCurrent.username, userFriendUsername))
-    dummy.current.scrollIntoView({ behavior: "smooth" })
   }, [databaseRef])
   const messages = useSelector((state) => state.chat.messages)
   const onSubmit = (e) => {
     if (e.key === "Enter") {
       setMessage("")
       dispatch(postMessages(message, userCurrent.username, userFriendUsername))
+      dummy.current.scrollIntoView({ behavior: "smooth" })
     }
   }
   const backTo = () => {
